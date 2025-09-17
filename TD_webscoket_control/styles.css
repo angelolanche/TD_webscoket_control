@@ -1,0 +1,201 @@
+@font-face {
+      font-family: 'LibreCaslonDisplay';
+      src: url('./public/fonts/LibreCaslonDisplay-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+html {
+    background: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: -webkit-fill-available;
+    width: -webkit-fill-available;
+}
+
+.body {
+    background: slategrey;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    gap: 2rem;
+    padding: 2rem;
+    border: 8px double darkgoldenrod;
+    box-shadow: 2px 2px 2px black;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border: 2px double;
+    gap: 2rem;
+}
+
+.power {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.powerOn {
+    display: grid;
+    place-content: center;
+    appearance: none;
+    width: 4rem;
+    height: 4rem;
+    align-items: center;
+    background-color: dimgray;
+    border: 5px double forestgreen;
+    border-radius: 0.2rem;
+    box-shadow: 1px 1px 1px black;
+}
+
+.powerOn:hover {
+    cursor: pointer;
+}
+
+.powerOn:active {
+    background-color: gray;
+    box-shadow: 0px 0px 5px greenyellow;
+}
+
+.powerOff {
+    display: grid;
+    place-content: center;
+    appearance: none;
+    width: 4rem;
+    height: 4rem;
+    align-items: center;
+    background-color: dimgray;
+    border: 5px double indianred;
+    border-radius: 0.2rem;
+    box-shadow: 1px 1px 1px black;
+}
+
+.powerOff:hover {
+    cursor: pointer;
+}
+
+.powerOff:active {
+    background-color: gray;
+    box-shadow: 0px 0px 5px indianred;
+    padding-left: 1px;
+    padding-top: 1px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 1.75rem;
+    padding-left: 5px;
+}
+
+.buttons button{
+    padding: 0;
+    margin: 0;
+    width: 3.5rem;
+    height: 3.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: dimgray;
+    border: 4px double black;
+    border-radius: 0.2rem;
+    box-shadow: 1px 1px 1px black;
+}
+
+.buttons button:active {
+    background-color: gray;
+    box-shadow: none;
+}
+
+.buttons button:hover {
+    cursor: pointer;
+}
+
+#play {
+ padding-left: 2px;
+}
+
+.text {
+    text-align: center;
+    margin: 0 auto;
+}
+
+h3 {
+    font-family: 'LibreCaslonDisplay';
+    letter-spacing: 2px;
+    border-bottom: 1px solid black;
+    margin-bottom: 5px;
+    font-size: 50px;
+}
+
+p {
+    margin: 0;
+    font-family: system-ui;
+}
+
+.volume {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+input[type="range"]{
+  accent-color: darkgray;
+}
+
+@media only screen and (max-width: 600px) {
+    .body {
+        box-shadow: 0px 2px 2px black;
+    }
+
+    .power {
+        gap: 40px;
+    }
+
+    .powerOn {
+        width: 5rem;
+        height: 5rem;
+    }
+
+    .powerOff {
+        width: 5rem;
+        height: 5rem;
+    }
+
+    .powerOff:active {
+        background-color: gray;
+        box-shadow: 0px 0px 12px red;
+    }
+
+    .powerOn:active {
+        background-color: gray;
+        box-shadow: 0px 0px 12px greenyellow;
+    }
+    
+    section {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        border: 2px double;
+        gap: 2.5rem;
+    }
+
+    .buttons {
+        gap: 2.1rem;
+        padding-left: 0px;
+    }
+
+    .buttons button{
+        width: 4rem;
+        height: 4rem;
+    }
+
+    .buttons button:active {
+        background-color: gray;
+        box-shadow: 0px 0px 10px gray;
+    }
+}
