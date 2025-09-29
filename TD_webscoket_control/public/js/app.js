@@ -7,6 +7,7 @@ const playButton = document.getElementById('play');
 const pauseButton = document.getElementById('pause');
 const volume = document.getElementById('volume');
 const clientName = document.getElementById('clientName');
+const presentationType = document.getElementById('option')
 
 // powerOn.addEventListener('click', (event) => {
 //   ws.send(JSON.stringify({"Power": 1}))
@@ -34,9 +35,14 @@ volume.addEventListener('input', (event) => {
   ws.send(JSON.stringify({"Volume": value}))
 });
 
-// clientName.addEventListener('input', (event) => {
-//   ws.send(JSON.stringify({"Name": event.target.value}))
-// });
+clientName.addEventListener('input', (event) => {
+  ws.send(JSON.stringify({"Name": event.target.value}))
+});
+
+presentationType.addEventListener('change', (event) => {
+  console.log('event: ', event.target.value)
+  ws.send(JSON.stringify({"Option": event.target.value}))
+});
 
 ws.addEventListener('message', (message) => {
   if(message.data == 'ping') {
