@@ -5,7 +5,7 @@ const WebSocket = require("ws");
 
 
 const app = express();
-const serverPort = 3000;
+const serverPort = 3010;
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ port: 5001 });
 let keepAliveId;
