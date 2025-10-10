@@ -1,4 +1,4 @@
-const ws = new WebSocket('ws://192.168.0.198:5001');
+const ws = new WebSocket('ws://172.16.11.23:5001');
 
 const powerOn = document.getElementById('powerOn');
 const powerOff = document.getElementById('powerOff');
@@ -9,13 +9,13 @@ const volume = document.getElementById('volume');
 const clientName = document.getElementById('clientName');
 const presentationType = document.getElementById('option')
 
-// powerOn.addEventListener('click', (event) => {
-//   ws.send(JSON.stringify({"Power": 1}))
-// });
+powerOn.addEventListener('click', (event) => {
+  ws.send(JSON.stringify({"Power": 2}))
+});
 
-// powerOff.addEventListener('click', (event) => {
-//   ws.send(JSON.stringify({"Power": 0}))
-// });
+powerOff.addEventListener('click', (event) => {
+  ws.send(JSON.stringify({"Power": 1}))
+});
 
 resetButton.addEventListener('click', (event) => {
   console.log('play -1')
