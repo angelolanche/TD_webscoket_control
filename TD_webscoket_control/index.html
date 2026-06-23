@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./public/js/app.js" defer></script>
+    <script src="./public/js/handle.js" defer></script>
     <title>BMW Projectors</title>
 </head>
 <body class="body">
@@ -48,7 +49,24 @@
             <select name="cars" class="options" id="option">
                 <option value="1">Serie M</option>
                 <option value="2">Serie X</option>
+                <option value="3">Especial</option>
             </select>
+    </section>
+    <section class="presentaion_type">
+        <div>
+            <h2>Imagens do Cliente</h2>
+            <label for="images">Selecione ate 5 imagens:</label>
+            </br>
+            <input type="file" id="images" accept="image/*" multiple>
+            <button type="button" id="sendImages">Enviar Imagens</button>
+        </div>
+        <div>
+            <h2>Musica do Cliente</h2>
+            <label for="music">Selecione uma musica:</label>
+            </br>
+            <input type="file" id="music" accept="audio/*">
+            <button type="button" id="sendMusic">Enviar Musica</button>
+        </div>
     </section>
     <div class="brand">
         <h3>BMW</h3>

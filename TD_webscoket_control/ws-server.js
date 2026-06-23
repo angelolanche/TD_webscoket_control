@@ -1,17 +1,8 @@
-const express = require('express');
-const fs = require('fs').promises;
-const http = require('http');
-const WebSocket = require("ws");
+import { Server, OPEN } from "ws";
 
-
-const app = express();
-const serverPort = 3010;
-const server = http.createServer(app);
-const wss = new WebSocket.Server({ port: 5001 });
+const wss = new Server({ port: 5001 });
+const upload = multerMiddlewere();
 let keepAliveId;
-
-app.use(express.static("public"));
-
 
 wss.on("connection", function (ws, req) {
   console.log("Connection Opened");
@@ -46,13 +37,13 @@ wss.on("connection", function (ws, req) {
 const broadcast = (ws, message, includeSelf) => {
   if (includeSelf) {
     wss.clients.forEach((client) => {
-      if (client.readyState === WebSocket.OPEN) {
+      if (client.readyState === OPEN) {
         client.send(message);
       }
     });
   } else {
     wss.clients.forEach((client) => {
-      if (client !== ws && client.readyState === WebSocket.OPEN) {
+      if (client !== ws && client.readyState === OPEN) {
         client.send(message);
       }
     });
@@ -65,47 +56,9 @@ const broadcast = (ws, message, includeSelf) => {
 const keepServerAlive = () => {
   keepAliveId = setInterval(() => {
     wss.clients.forEach((client) => {
-      if (client.readyState === WebSocket.OPEN) {
+      if (client.readyState === OPEN) {
         client.send('ping');
       }
     });
   }, 50000);
 };
-
-app.get('/', async (req, res) => {
-  try {
-    const [html, css] = await Promise.all([
-      fs.readFile('index.html', 'utf8'),
-      fs.readFile('styles.css', 'utf8')
-    ]);
-    
-    const styledHtml = html.replace('</head>', `<style>${css}</style></head>`);
-    res.send(styledHtml);
-  } catch (error) {
-    console.error('Error serving HTML:', error);
-    res.status(500).send('Server Error');
-  }
-});
-  
-  // Serve static files from public directory
-  app.use('/public', express.static('public'));
-  
-  // Block direct access to CSS
-  app.get('/styles.css', (req, res) => {
-    res.status(403).send('Direct access to CSS is not allowed');
-  });
-  
-  // Error handling middleware
-  app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).send('Something broke!');
-  });
-  
-  // 404 handler
-  app.use((req, res) => {
-    res.status(404).send('Page not found');
-  });
-  
-  app.listen(serverPort, () => {
-    console.log(`Server started on port ${serverPort}`);
-  });

@@ -5,15 +5,17 @@
   "main": "main.js",
   "author": "Torin Blankensmith",
   "license": "MIT",
+  "type": "module",
   "private": false,
   "scripts": {
-    "start": "node ./ws-server.js"
+    "start": "node ./http-server.js"
   },
   "engines": {
     "node": ">=8.9.0"
   },
   "dependencies": {
     "express": "^4.17.1",
+    "multer": "^2.2.0",
     "ws": "^8.2.2"
   }
 }
