@@ -1,7 +1,6 @@
-import { Server, OPEN } from "ws";
+import WebSocket, {WebSocketServer} from "ws";
 
-const wss = new Server({ port: 5001 });
-const upload = multerMiddlewere();
+const wss = new WebSocketServer({ port: 5001 });
 let keepAliveId;
 
 wss.on("connection", function (ws, req) {
@@ -43,7 +42,7 @@ const broadcast = (ws, message, includeSelf) => {
     });
   } else {
     wss.clients.forEach((client) => {
-      if (client !== ws && client.readyState === OPEN) {
+      if (client !== ws && client.readyState === WebSocket.OPEN) {
         client.send(message);
       }
     });
@@ -56,7 +55,7 @@ const broadcast = (ws, message, includeSelf) => {
 const keepServerAlive = () => {
   keepAliveId = setInterval(() => {
     wss.clients.forEach((client) => {
-      if (client.readyState === OPEN) {
+      if (client.readyState === WebSocket.OPEN) {
         client.send('ping');
       }
     });

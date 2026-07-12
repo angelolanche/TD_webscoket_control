@@ -49,23 +49,25 @@
             <select name="cars" class="options" id="option">
                 <option value="1">Serie M</option>
                 <option value="2">Serie X</option>
-                <option value="3">Especial</option>
+                <option value="3">Welcome</option>
             </select>
     </section>
-    <section class="presentaion_type">
-        <div>
-            <h2>Imagens do Cliente</h2>
-            <label for="images">Selecione ate 5 imagens:</label>
-            </br>
-            <input type="file" id="images" accept="image/*" multiple>
-            <button type="button" id="sendImages">Enviar Imagens</button>
-        </div>
-        <div>
-            <h2>Musica do Cliente</h2>
-            <label for="music">Selecione uma musica:</label>
-            </br>
-            <input type="file" id="music" accept="audio/*">
-            <button type="button" id="sendMusic">Enviar Musica</button>
+    <section class="file_upload_section" id="file_upload_section">
+        <div class="presentation_type">
+            <div class="welcome">
+                <h2>Imagens e Musica do Cliente:</h2>
+                <div class="input_files">
+                    <label for="images">Selecione até 5 imagens:</label>
+                    <input type="file" id="images" accept="image/jpeg" multiple>
+                </div>
+                <div class="input_files">
+                    <label for="music">Selecione uma musica:</label>
+                    <input type="file" id="music" accept="audio/mpeg">
+                </div>
+                <div class="submit_button">
+                    <button type="button" id="sendFiles">Enviar Arquivos</button>
+                </div>
+            </div>
         </div>
     </section>
     <div class="brand">

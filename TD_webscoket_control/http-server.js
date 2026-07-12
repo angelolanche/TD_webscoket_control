@@ -3,12 +3,14 @@ import { promises as fs } from 'fs';
 import { createServer } from 'http';
 import WebSocket from "ws";
 import path from 'path';
-import multierMiddlewere from './multer-middlewere.js';
+import { CleanFolderSync, MulterMiddlewere } from './multer-middlewere.js';
+import './ws-server.js';
 
 const app = express();
 const serverPort = 3010;
 const server = createServer(app);
-const upload = multierMiddlewere.multerMiddlewere();
+const upload = MulterMiddlewere();
+
 
 app.use(express.static("public"));
 
@@ -35,18 +37,23 @@ app.get('/styles.css', (req, res) => {
   res.status(403).send('Direct access to CSS is not allowed');
 });
 
-// Image upload endpoint
+// File upload endpoint
+app.post('/uploadFiles', (req, res, next) => {
 
-app.post('/uploadImage', upload.array('images', 5), (req, res) => {
-  console.log(req.files);
-  res.send('All files uploaded!');
+  CleanFolderSync('./clientImages');
+  CleanFolderSync('./clientMusic');
+
+  next();
+
+}, upload.fields([
+  { name: 'images', maxCount: 5 },
+  { name: 'music', maxCount: 1 }
+]), (req, res) => {
+
+  res.send('files uploaded');
 });
   
-// Music upload endpoint
-app.post('/uploadMusic', upload.single('music'), (req, res) => {
-  console.log(req.file);
-  res.send('Music file uploaded!');
-});
+  
 
 // Error handling middleware
 app.use((err, req, res, next) => {

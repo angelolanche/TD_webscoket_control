@@ -10,8 +10,8 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: -webkit-fill-available;
-    width: -webkit-fill-available;
+    height: auto;
+    width: auto;
 }
 
 .body {
@@ -124,6 +124,13 @@ html {
     margin: 0 auto;
 }
 
+h2 {
+    /* letter-spacing: 2px; */
+    font-size: 20px;
+    padding: 0;
+    margin: 0 0 10px 0;
+}
+
 h3 {
     font-family: 'LibreCaslonDisplay';
     letter-spacing: 2px;
@@ -140,7 +147,7 @@ label {
 .volume {
     display: flex;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 input[type="range"] {
@@ -161,6 +168,11 @@ input[type="range"] {
     border: 0;
 }
 
+.options {
+    background: lightgray;
+    border: 0;
+}
+
 .presentation_type {
     display: flex;
     flex-direction: column;
@@ -169,11 +181,63 @@ input[type="range"] {
     gap: 0.5rem;
 }
 
-.options {
-    background: lightgray;
-    border: 0;
+.file_upload_section {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition:
+        max-height 1s ease,
+        opacity 1s ease;
 }
 
+.file_upload_section.show_content {
+    max-height: 500px;
+    opacity: 1;
+}
+
+.welcome {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border: 2px solid black;
+    gap: 0.5rem;
+}
+
+.welcome div {
+    display: flex;
+    flex-direction: column;
+}
+
+.welcome label {
+    margin-bottom: 0.5rem;
+}
+
+.welcome .input_files ::file-selector-button {
+    padding: 0.5rem;
+    background: lightgray;
+    border-radius: 0.2rem;
+    cursor: pointer;
+    border: none;
+    margin-bottom: 0.5rem;
+}
+
+.welcome .submit_button button {
+    padding: 0.5rem;
+    margin: 10px 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: dimgray;
+    border: 4px double black;
+    border-radius: 0.2rem;
+    box-shadow: 1px 1px 1px black;
+    cursor: pointer;
+}
+
+.welcome .submit_button button:active {
+    background-color: gray;
+    box-shadow: none;
+}
 
 @media only screen and (max-width: 600px) {
     .body {

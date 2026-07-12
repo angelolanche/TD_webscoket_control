@@ -1,13 +1,28 @@
 import multer, { diskStorage } from 'multer';
+import fs from 'fs';
 
-function multerMiddlewere() {
+function CleanFolderSync(folderPath) {
+  try {
+    // Delete folder and contents synchronously
+    fs.rmSync(folderPath, { recursive: true, force: true });
+    
+    // Recreate it empty
+    fs.mkdirSync(folderPath, { recursive: true });
+    
+    console.log('Folder cleaned successfully.');
+  } catch (err) {
+    console.error('Error cleaning folder:', err);
+  }
+}
+
+function MulterMiddlewere() {
   const storage = diskStorage({
   destination: (req, file, cb) => {
     if(file.fieldname === 'music') {
-      return cb(null, 'musics/');
+      return cb(null, 'clientMusic/');
     }
 
-    cb(null, 'uploads/');
+    cb(null, 'clientImages/');
   },
     filename: (req, file, cb) => {
       if(file.fieldname === 'music') {
@@ -30,4 +45,4 @@ function multerMiddlewere() {
   return upload;
 }
 
-export default { multerMiddlewere };
+export { MulterMiddlewere, CleanFolderSync };
